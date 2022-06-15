@@ -16,9 +16,13 @@ export class AppComponent implements OnInit {
   answeredQuestionsLen = 0;
   allQuestionsLen = 0;
   answeredIndex = -1;
+  correctlyAnswered = 0;
 
   ngOnInit(): void {
     let done = localStorage.getItem("doneQuestions");
+    let correct = localStorage.getItem("correct");
+    if (correct) this.correctlyAnswered = +correct;
+
     if (done) this.doneQuestions = JSON.parse(done) as unknown as number[];
     console.log(this.doneQuestions)
     this.allQuestionsLen = this.questions.length;
@@ -44,6 +48,8 @@ export class AppComponent implements OnInit {
     localStorage.setItem("doneQuestions", JSON.stringify(this.doneQuestions))
     this.showCorrect = true;
     this.answeredIndex = index
+    if (this.currentQuestion.answers[index].correct)
+      this.correctlyAnswered++;
   }
 
   nextQuestion() {
