@@ -1,0 +1,23 @@
+<div *ngIf="currentQuestion">
+  <p>{{currentQuestion.question}}</p>
+  <div *ngFor="let answer of currentQuestion.answers">
+    <button (click)="answerQuestion()"
+            [ngClass]="{'answer': true, 'correct': (showCorrect && answer.correct)}">
+      {{answer.text}}
+    </button>
+  </div>
+  <br>
+  <div>
+    <button (click)="nextQuestion()" class="answer">Next ▶</button>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div>
+    Answered questions: {{answeredQuestionsLen}}/{{allQuestionsLen}}
+  </div>
+  <div>
+    <button (click)="clearQuestions()" class="answer">Clear answered</button>
+  </div>
+</div>
