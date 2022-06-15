@@ -60,7 +60,9 @@ export class AppComponent implements OnInit {
 
   clearQuestions() {
     localStorage.removeItem("doneQuestions")
+    localStorage.removeItem("correct")
     this.doneQuestions = [];
+    this.correctlyAnswered = 0;
     this.answeredQuestionsLen = 0
   }
 }
