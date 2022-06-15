@@ -5,3 +5,9 @@
 .correct{
   background-color: green;
 }
+.incorrect{
+  background-color: red
+}
+.answer:disabled{
+  color: black
+}

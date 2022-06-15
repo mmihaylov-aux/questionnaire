@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   showCorrect = false;
   answeredQuestionsLen = 0;
   allQuestionsLen = 0;
+  answeredIndex = -1;
 
   ngOnInit(): void {
     let done = localStorage.getItem("doneQuestions");
@@ -38,19 +39,22 @@ export class AppComponent implements OnInit {
     return Math.floor(Math.random() * this.questions.length);
   }
 
-  answerQuestion() {
+  answerQuestion(index: number) {
     this.doneQuestions.push(this.currentIndex);
     localStorage.setItem("doneQuestions", JSON.stringify(this.doneQuestions))
     this.showCorrect = true;
+    this.answeredIndex = index
   }
 
   nextQuestion() {
     this.selectQuestion();
     this.showCorrect = false;
+    this.answeredIndex = -1
   }
 
   clearQuestions() {
     localStorage.removeItem("doneQuestions")
     this.doneQuestions = [];
+    this.answeredQuestionsLen = 0
   }
 }

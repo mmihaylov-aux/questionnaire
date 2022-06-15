@@ -1,8 +1,11 @@
 <div *ngIf="currentQuestion">
   <p>{{currentQuestion.question}}</p>
-  <div *ngFor="let answer of currentQuestion.answers">
-    <button (click)="answerQuestion()"
-            [ngClass]="{'answer': true, 'correct': (showCorrect && answer.correct)}">
+  <div *ngFor="let answer of currentQuestion.answers; let i = index">
+    <button (click)="answerQuestion(i)"
+            [disabled]="answeredIndex !== -1"
+            [ngClass]="{'answer': true,
+            'correct': (showCorrect && answer.correct),
+            'incorrect': (answeredIndex === i && !answer.correct)}">
       {{answer.text}}
     </button>
   </div>
